@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en"> 
+
+  <head>
+      <title>Inicio</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      
+      <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,300i,400,500,600,700,800,900,900i%7CPT+Serif:400,700">
+      <link rel="stylesheet" href="/assets/css/bootstrap.css">
+      <link rel="stylesheet" href="/assets/css/fonts.css">
+      <link rel="stylesheet" href="/assets/css/style.css">
+      
+      <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+  </head>
+
+  <body>
+
+
+
+      <!-- ===========================================================================   -->
+      <!--Zona do Header ou Navbar-->
+      <header class="" >
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light " style="background-color: indigo;">
+            <img src="../assets/images/logo-ajcc.png" style="width: 60px;border-radius: 40px;">
+            <a class="navbar-brand" href="#"><span style="background-image: url(../assets/images/logo-ajcc.png);"></span></a>
+            <button style="background-color: rgb(8, 131, 8,.7);" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto ul1" style="margin: 0 auto;">
+                <li class="nav-item active">
+                  <a class="nav-link " style="color:white" href="#" (click)="aoClicar('inicio')">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" style="color:white" href="#" (click)="aoClicar('info')">Serviços</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" style="color:white" href="#" (click)="aoClicar('equipe')">Benefícios</a>
+                </li>
+                
+                <li class="nav-item">
+                  <a class="nav-link disabled" style="color:white" href="#" (click)="aoClicar('contactos')">Contactos</a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" disabled placeholder="Seja Bem-Vindo" aria-label="Search">
+                <a class="btn btn-outline-success my-2 my-sm-0" href="#" data-toggle="modal" data-target="#exempleModalCenter">Cadastra-se</a>
+              </form>
+            </div>
+          </nav>
+      </header>
+
+      <!-- ===========================================================================   -->
+      <!--Zona Do Modal-->
+
+    
+  
+      <!--Modal de Entrar Com A Referencia e Criar Uma Referencia-->
+      <div class="modal fade" id="exempleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exempleModalCenterTitle" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered" role="document">
+            
+            
+            <div  class="modal-content" style="background-image: url(../assets/images/38.jpg);background-size: cover;background-repeat: no-repeat;font-weight: bold;">
+
+                <div *ngIf="progressBar" class="progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                </div>
+                <div *ngIf="!progressBar">
+                    
+                        
+
+                
+               
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exempleModalCenterTitle"><em style="color: whitesmoke;">Associação De Jovens Companheiros Das Comunidades</em></h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                            <span aria-hidden="true"></span>
+                          </button>
+                        </div>
+                        <div *ngIf="entrarRef">
+                              <div class="modal-header" *ngIf="tenhoReferencia"> 
+                                <h5 class="text-center" style="text-align: center;border: red;">Entrar No Sistema !</h5>
+                                <br><button type="button" class="btn btn-primary" (click)="sistema()">Entrar</button>
+                                <button type="button" class="btn btn-warning" (click)="voltar()">Voltar</button>
+                              </div>
+
+                              <div *ngIf="!tenhoReferencia">
+                                <div class="modal-body">
+                                  <form [formGroup]="associacao">
+                                        <div *ngIf="msg2">
+                                          <br><br>
+                                          <h6 class="text-sucess" style="color: red;text-align: center;">&nbsp;O Nº De Associado Informado Não Existe! </h6>&nbsp;
+                                          <br><a type="button" class="btn btn-primary container" (click)="estadoRerenciar('criar')">Criar</a>
+                                          <br>
+                                        </div>
+
+                                        <div class="form-group row mt-3" >
+                                          <label for="input" class="col-sm-2 col-form-label"><span style="color: green;font-size: 17px;">Nº De Associado</span></label>
+                                          <input formControlName="referencia" name="referencia" type="password" class="form-control" id="input" placeholder="Digite O Seu Nº De Associado">
+                                      </div>
+                                        <p>&nbsp;<a href="#" class="text-sucess" (click)="estadoRerenciar('criar')"> Ainda Não Tenho o Nº De Associado</a></p>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="fecharForm()">Fechar</button>
+                                    <button type="button" class="btn btn-primary" (click)="entrar()">Entrar</button>
+                                </div>
+                              </div>
+                                
+                          </div>
+                          <div *ngIf="criarRef">
+                              
+                              <div *ngIf="criarRef && esconderCriar">
+
+                                <div class="modal-body" style="background-image: url(../assets/images/38.jpg);background-size: cover;background-repeat: no-repeat;font-weight: bold;color:white">
+                                  <form [formGroup]="associacao">
+                                    
+                                      <h4 class="text-sucess" style="color: white;font-weight: bold;">&nbsp;Criar Nº De Associado</h4> 
+                                      <br><br>
+                                      <h5 *ngIf="preencherFormulario" class="text-sucess" style="color: red;text-align: center;">&nbsp;Preencha os Campos Assinalados Com * </h5> 
+                                      <h5 *ngIf="msg" style="color: white;text-align: center;">&nbsp;Nº De Associado Criado Com Sucesso, <span style="color: red;">{{numeroDeAssociado}}</span> é o seu Nº, guarde-o!</h5> 
+                                      <br>
+                                      <hr>
+                                      <div class="form-row">
+                                            <div class="form-group col-md-6"> 
+                                              <span style="color:red">*</span><label for="nome" class="col-sm-2 col-form-label" style="font-weight: bold;"><span class="text-sucess">Nome</span></label>
+                                                  <input formControlName="nome" name="nome" type="text" class="form-control" id="nome" placeholder="Digite Seu Nome" required>
+                                              </div>
+                    
+                                              <div class="form-group col-md-3">
+                                                <span style="color:red">*</span><label for="idade" class="col-sm-2 col-form-label"><span class="text-sucess" style="font-weight: bold;">Idade</span></label>
+                                                <input formControlName="idade" name="idade" type="number" class="form-control" id="idade" placeholder="Digite Sua idade" min="0" required>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                              <span style="color:red">*</span><label for="data" class="col-sm-2 col-form-label"><span class="text-sucess" style="font-weight: bold;">Nascimento</span></label>
+                                              <input formControlName="data" name="data" type="date" class="form-control" id="data" placeholder="Digite Sua data" required>
+                                          </div>
+                                                
+                                      </div>
+                                      <div class="form-row">
+                                            <div class="form-group col-md-4"> 
+                                              <span style="color:red">*</span><label for="provincia" class="col-sm-2 col-form-label" style="font-weight: bold;"><span class="text-sucess">provincia</span></label>
+                                                  <input formControlName="provincia" name="provincia" type="text" class="form-control" id="provincia" placeholder="Digite Sua Provincia" required>
+                                              </div>
+                                              <div class="form-group col-md-4"> 
+                                                <span style="color:red">*</span><label for="municipio" class="col-sm-2 col-form-label" style="font-weight: bold;"><span class="text-sucess">Município</span></label>
+                                                <input formControlName="municipio" name="municipio" type="text" class="form-control" id="municipio" placeholder="Digite Seu Municipio" required>
+                                            </div>
+                                            <div class="form-group col-md-4"> 
+                                              <label for="bi" class="col-sm-2 col-form-label" style="font-weight: bold;"><span class="text-sucess">Bilhete</span></label>
+                                              <input formControlName="bi" name="bi" type="text" class="form-control" id="bi" placeholder="Nº Do Bilhete De Identidade" required>
+                                          </div>
+                                        </div>
+                                      <fieldset class="form-group">
+                                          <div class="row">
+                                              <div class="col-sm-4">
+                                                <div class="form-check">
+                                                  <span style="color:red">*</span><label class="form-check-label" for="sexo">Sexo</label>&nbsp;
+                                                    <select class="form-control" formControlName="genero" name="genero">
+                                                        <option value="Masculino">Masculino</option>
+                                                        <option value="Femenino">Femenino</option>
+                                                    </select>
+                                                  </div>
+                                                    
+                                              </div>
+                                          </div>
+                                          <br>
+                                          <br>
+                                          <hr>
+                                          <br>
+                                          <br>
+
+                                          <div class="form-row">
+
+                                            <div class="col-sm-4 col-md-4">
+                                              <div class="form-check">
+                                                <span style="color:red">*</span><label class="form-check-label" for="servico">Serviço</label>&nbsp;
+                                                  <select class="form-control" formControlName="servico" name="servico">
+                                                      <option value="Registo Nascimento / Bilhete">Registo Nascimento / Bilhete</option>
+                                                      <option value="Formação Profissional">Formação Profissional</option>
+                                                      <option value="Formação Académica">Formação Académica</option>
+                                                      <option value="Emprego">Emprego</option>
+                                                      <option value="Saúde">Saúde</option>
+                                                      <option value="Apoio Social E Acompanhamento">Apoio Social E Acompanhamento</option>
+                                                  </select>
+                                                </div>
+                                                  
+                                            </div>
+                                              <div class="form-group col-md-4"> 
+                                                    <label for="profissao" class="col-sm-2 col-form-label" style="font-weight: bold;"><span class="text-sucess">Profissao</span></label>
+                                                    <input formControlName="profissao" name="profissao" type="text" class="form-control" id="profissao" placeholder="Digite Sua Profissão" required>
+                                                </div>
+                                                <div class="form-group col-md-3"> 
+                                                  <span style="color:red">*</span><label for="telefone" class="col-sm-2 col-form-label" style="font-weight: bold;"><span class="text-sucess">Telefone</span></label>
+                                                    <input formControlName="telefone" name="telefone" type="text" class="form-control" id="telefone" placeholder="Digite Seu Telefone" maxlength="9" required>
+                                                </div>
+                                                <div class="form-group col-md-6"> 
+                                                  <label for="email" class="col-sm-2 col-form-label" style="font-weight: bold;"><span class="text-sucess">Email</span></label>
+                                                  <input formControlName="email" name="email" type="email" class="form-control" id="email" placeholder="EX: nomesobrenome@gmail.com" required>
+                                              </div>
+                                              
+                                          </div>
+
+                                          <br>
+                                          <div class="row">
+                                            <div class="form-group col-md-6">
+                                              <span style="color:red">*</span><label for="password" class="col-sm-2 col-form-label" style="font-weight: bold;"><span class="text-sucess">Palavra-Passe</span></label>
+                                              <input title="Informe a Sua Senha Com No Máximo 8 Letras" maxlength="8" placeholder="No Máximo 8 letras" formControlName="password" name="password" type="password" class="form-control" id="password" required>
+                                          </div>
+                                        </div>
+                                      </fieldset>
+                                      
+                                    
+                                      <p>&nbsp;<a href="#" class="text-sucess" (click)="estadoRerenciar('entrar')">Já Tenho O Meu Nº de Associado</a></p>
+                                  </form>
+                                </div>
+
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="fecharForm()">Fechar</button>
+                                      <button type="button" class="btn btn-primary" (click)="exibir()">Próximo</button>
+                                  </div>
+                              </div>
+
+                              <div *ngIf="criarRef && exibirContrato">
+                                    
+                                <div class="modal-body">
+                                  <form [formGroup]="associacao">
+                                    
+                                      <h4 class="text-sucess" style="color: green;">&nbsp;Termo de Comprimisso</h4> 
+                                      <br><br>
+                                      <hr>
+                                      <p style="padding: 3%;color: whitesmoke;"> Após ter lido o postulado ( Missão, Visão e Valores) da A.J.C.C, declaro de livre e espontânea vontade, honrar e cumprir as cláusulas do estatuto e de mais regulamentos internos da Associação, na sua íntigra em especial: </p>
+                                      <p style="color:green"> 1- A manutenção e observância da paz e da conduta social exemplar</p>
+                                      <p style="color:green"> 2- A participação nas actividades socio-cultural e a demais realizada pela A.J.C.C</p>
+                                      <p style="color:green"> 3- A comparticipação com a taxa de intermidiação de 1% de salário base mensal, retida na fonte pela entidade empregadora ou por via de depósito ou transferência bancária, a ser efectuado pelo associado, após a verificação e garantia de um posto de trabalho via associção.</p>
+                                      <br><br>
+                                      <p>&nbsp;<a href="#" class="text-sucess" (click)="estadoRerenciar('entrar')">Já Tenho O meu Nº de Associado</a></p>
+                                  </form>
+                                </div>
+
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="voltarCriar()">Voltar</button>
+                                      <button type="button" class="btn btn-primary" (click)="criarReferencia()">Criar</button>
+                                  </div>
+                              </div>
+                              
+                              
+                              </div>
+                </div>
+                
+            </div>
+         </div>
+      </div>
+
+      <!-- ===========================================================================   -->
+
+
+
+      <!--Zona Da Pagina Inicio-->
+      <app-inicio *ngIf="inicio"></app-inicio>
+
+      <!--Zona da Pagina Info-->
+      <app-info *ngIf="info"></app-info>
+
+      <!--Zona Da Pagina De Equipe-->
+      <app-equipe *ngIf="equipe"></app-equipe>
+
+      <!--Zona Da Pagina de Contactos-->
+      <app-contactos *ngIf="contactos"></app-contactos>
+      <!-- ===========================================================================   -->
+
+      <!--Zona Do Footer-->
+      <app-footer ></app-footer>
+
+      <!-- ===========================================================================   -->
+      
+      <!--Zona De Scripts-->
+      <div class="snackbars" id="form-output-global"></div>
+      <script src="/assets/js/core.min.js"></script>
+      <script src="/assets/js/script.js"></script>
+
+      <!-- ===========================================================================   -->
+
+</body>
+</html>

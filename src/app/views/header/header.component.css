@@ -1,0 +1,6 @@
+.ul1 li{
+    color:black;font-weight: bold;
+}
+.ul1 li:hover{
+    border-bottom: 3px solid green;
+}
